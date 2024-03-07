@@ -56,7 +56,7 @@ pub struct CalendarListItem {
     pub selected: Option<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
-    pub notification_settings: NotificationSettings,
+    pub notification_settings: Option<NotificationSettings>,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub default_reminders: Vec<DefaultReminder>,
 
