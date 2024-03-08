@@ -107,17 +107,23 @@ async fn handler(
     let token =
         request_access_token(lock.clone(), code.as_deref(), oauth_state.as_deref(), false).await?;
     lock.access_key = Some(token.access_token);
-    lock.expires_at =
-        Some(chrono::Local::now().naive_utc() + chrono::Duration::seconds(token.expires_in));
+    lock.expires_at = Some(
+        chrono::Local::now().naive_utc()
+            + chrono::TimeDelta::try_seconds(token.expires_in).unwrap_or_default(),
+    );
 
     if let Some(refresh_token) = token.refresh_token {
         lock.refresh_token = Some(refresh_token);
         if let Some(expires_in) = token.refresh_token_expires_in {
-            lock.refresh_token_expires_at =
-                Some(chrono::Local::now().naive_utc() + chrono::Duration::seconds(expires_in));
+            lock.refresh_token_expires_at = Some(
+                chrono::Local::now().naive_utc()
+                    + chrono::TimeDelta::try_seconds(expires_in).unwrap_or_default(),
+            );
         } else {
-            lock.refresh_token_expires_at =
-                Some(chrono::Local::now().naive_utc() + chrono::Duration::seconds(3600));
+            lock.refresh_token_expires_at = Some(
+                chrono::Local::now().naive_utc()
+                    + chrono::TimeDelta::try_seconds(3600).unwrap_or_default(),
+            );
         }
     }
 
