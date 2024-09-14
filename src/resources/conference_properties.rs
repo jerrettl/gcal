@@ -10,14 +10,14 @@ pub struct ConferenceProperties {
     pub default_reminders: Option<Vec<DefaultReminder>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct DefaultReminder {
     pub method: ReminderMethod,
     pub minutes: u16,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum ReminderMethod {
     #[serde(rename = "email")]

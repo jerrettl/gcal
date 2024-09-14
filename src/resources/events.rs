@@ -48,7 +48,7 @@ pub struct Events {
 }
 
 /// Event is a single event.
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct Event {
     #[serde(default = "default_event_kind")]
@@ -139,7 +139,7 @@ pub struct Event {
     query_string: QueryParams,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum EventOfficeLocationType {
     #[default]
@@ -148,7 +148,7 @@ pub enum EventOfficeLocationType {
     CustomLocation,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventOfficeLocation {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -164,14 +164,14 @@ pub struct EventOfficeLocation {
     pub typ: EventOfficeLocationType,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventCustomLocation {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub label: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventWorkingLocation {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -182,7 +182,7 @@ pub struct EventWorkingLocation {
     pub office_location: Option<EventOfficeLocation>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum EventVisibility {
     #[default]
@@ -192,7 +192,7 @@ pub enum EventVisibility {
     Confidential,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum EventTransparency {
     #[default]
@@ -200,7 +200,7 @@ pub enum EventTransparency {
     Transparent,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum EventStatus {
     Confirmed,
@@ -209,14 +209,14 @@ pub enum EventStatus {
     Cancelled,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventSource {
     pub title: String,
     pub url: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventReminder {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -224,7 +224,7 @@ pub struct EventReminder {
     pub use_default: bool,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventOrganizer {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -236,7 +236,7 @@ pub struct EventOrganizer {
     pub appears_as_self: Option<bool>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum EventGadgetDisplay {
     #[default]
@@ -244,7 +244,7 @@ pub enum EventGadgetDisplay {
     Chip,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventGadget {
     pub display: EventGadgetDisplay,
@@ -252,7 +252,7 @@ pub struct EventGadget {
     // a lot of deprecated fields in this struct
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventExtendedProperties {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -261,7 +261,7 @@ pub struct EventExtendedProperties {
     pub shared: Option<AdditionalProperties>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum EventType {
     #[default]
@@ -271,7 +271,7 @@ pub enum EventType {
     WorkingLocation,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventCalendarDate {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -282,7 +282,7 @@ pub struct EventCalendarDate {
     pub time_zone: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventConferenceData {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -299,7 +299,7 @@ pub struct EventConferenceData {
     pub signature: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventCreator {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -313,7 +313,7 @@ pub struct EventCreator {
     pub appears_as_self: Option<bool>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventConferenceEntryPoint {
     entry_point_type: EventConferenceEntryPointType,
@@ -331,7 +331,7 @@ pub struct EventConferenceEntryPoint {
     uri: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum EventConferenceEntryPointType {
     #[default]
@@ -341,7 +341,7 @@ pub enum EventConferenceEntryPointType {
     More,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventCreateConferenceRequest {
     conference_solution_key: EventConferenceSolutionKey,
@@ -349,13 +349,13 @@ pub struct EventCreateConferenceRequest {
     status: EventConferenceStatus,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventConferenceStatus {
     status_code: EventConferenceStatusCode,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum EventConferenceStatusCode {
     #[default]
@@ -364,14 +364,14 @@ pub enum EventConferenceStatusCode {
     Failure,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventConferenceSolution {
     pub icon_uri: String,
     pub key: EventConferenceSolutionKey,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventConferenceSolutionKey {
     #[serde(rename = "type")]
@@ -380,7 +380,7 @@ pub struct EventConferenceSolutionKey {
     pub name: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum EventConferenceSolutionKeyType {
     EventHangout,
@@ -390,7 +390,7 @@ pub enum EventConferenceSolutionKeyType {
     AddOn,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventAttendees {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -414,7 +414,7 @@ pub struct EventAttendees {
     pub appears_as_self: Option<bool>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub enum EventResponseStatus {
     #[default]
@@ -424,7 +424,7 @@ pub enum EventResponseStatus {
     Accepted,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
 pub struct EventAttachment {
     pub file_id: String,
