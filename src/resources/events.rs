@@ -492,7 +492,7 @@ impl EventClient {
             }
         }
 
-        let resp = self.0.post(Some("import".to_string()), event).await?;
+        let resp = self.0.post(Some("".to_string()), event).await?;
 
         Ok(resp.json().await?)
     }
