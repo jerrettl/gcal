@@ -498,13 +498,14 @@ impl EventClient {
     }
 
     /// Retrieve all instances for a recurring event.
-    pub async fn instances(&self, event: Event) -> Result<Events, ClientError> {
+    pub async fn instances(&self, event: Event) -> Result<Vec<Event>, ClientError> {
         Ok(self
             .0
             .get(Some("instances".to_string()), event)
             .await?
-            .json()
-            .await?)
+            .json::<Events>()
+            .await?
+            .items)
     }
 
     /// List events between the start and end times.
